@@ -4,10 +4,17 @@ import com.wenxuan.uumall.Entity.Users;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface UserMapper {
 
     @Select("select * from Users where user_name = #{user_name} and pass_word = #{pass_word}")
     Users checkLogin(@Param("user_name") String userName, @Param("pass_word") String passWord);
+
+    @Select("select * from Users where id = #{id}")
+    Users findOne(@Param("id") Integer id);
+
+    @Update("update Users set user_name = #{user_name},pass_word=#{pass_word},nick_name=#{nick_name} where id = #{id}")
+    Users updateUser(@Param("id") Integer id, @Param("user_name") String userName, @Param("pass_word") String pass_word,@Param("nick_name") String nicName);
 }
