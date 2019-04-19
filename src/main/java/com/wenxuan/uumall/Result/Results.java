@@ -37,11 +37,11 @@ public class Results<T> implements Serializable {
     }
 
     public static <R> Results<R> error() {
-        return error(-1,"错误");
+        return error(0,"发生未知错误");
     }
 
     public static <R> Results<R> error(String message) {
-        return error(-1,message);
+        return error(0,message);
     }
 
     public static <R> Results<R> error(int code, String message) {

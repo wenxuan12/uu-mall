@@ -1,2 +1,13 @@
 server:
-  port: 8008
+  port: 8001
+
+spring:
+  datasource:
+    url: jdbc:mysql://101.132.47.96:3306/uumall?useSSL=false
+    username: root
+    password: wenxuan123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
