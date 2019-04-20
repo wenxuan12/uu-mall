@@ -1,6 +1,7 @@
 package com.wenxuan.uumall.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
 import com.aliyuncs.DefaultAcsClient;
@@ -9,15 +10,16 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
-import com.wenxuan.uumall.Entity.Users;
-import com.wenxuan.uumall.Mapper.UserMapper;
-import com.wenxuan.uumall.Request.UserRequest;
-import com.wenxuan.uumall.Result.Results;
+import com.wenxuan.uumall.entity.Users;
+import com.wenxuan.uumall.mapper.UserMapper;
+import com.wenxuan.uumall.request.UserRequest;
+import com.wenxuan.uumall.request.CheckLgionRequest;
+import com.wenxuan.uumall.result.Results;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
 
 @Service
 public class UserService  {
@@ -36,40 +38,57 @@ public class UserService  {
         return Results.error("账号密码不能为空");
     }
 
-    public String register(String userName){
-//        if (userName.length() != 11){
-//            return Results.error("手机号长度不正确");
-//        }
-        String str = "qwe";
+    public Results<CheckLgionRequest> mobileCode(CheckLgionRequest mobileCheckRequest){
+        if (mobileCheckRequest.getUserName().length() != 11){
+            return Results.error("手机号长度不正确");
+        }
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAIRLb6GBCCtKk8", "ErfuyvEkMRMUsmumOgHkL6WPvYlqal");
         IAcsClient client = new DefaultAcsClient(profile);
-
+        int number = (int)(Math.random()*864198+123456);
         CommonRequest request = new CommonRequest();
         //request.setProtocol(ProtocolType.HTTPS);
         request.setMethod(MethodType.POST);
         request.setDomain("dysmsapi.aliyuncs.com");
         request.setVersion("2017-05-25");
-        request.setAction("SendBatchSms");
+        request.setAction("SendSms");
         request.putQueryParameter("RegionId", "cn-hangzhou");
-        request.putQueryParameter("PhoneNumberJson", "15869176325");
-        request.putQueryParameter("SignNameJson", "随手快递");
-        request.putQueryParameter("TemplateCode", "SMS_137525162");
-
-        request.putQueryParameter("TemplateParamJson", "{\"code\":\"123\"}");
+        request.putQueryParameter("PhoneNumbers", mobileCheckRequest.getUserName());
+        request.putQueryParameter("SignName", "UU商城");
+        request.putQueryParameter("TemplateCode", "SMS_163847219");
+        request.putQueryParameter("TemplateParam", "{\"code\":\"" + number + "\"}");
         try {
             CommonResponse response = client.getCommonResponse(request);
             System.out.println(response.getData());
-            str = response.getData();
+            JSONObject jsStr = JSONObject.parseObject(response.getData());
+            String str = jsStr.getString("Message");
+            if (!str.equals("OK")){
+                return Results.error(str);
+            }
+            mobileCheckRequest.setCheckingCode(String.valueOf(number));
+            return Results.success(mobileCheckRequest);
         } catch (ServerException e) {
             e.printStackTrace();
         } catch (ClientException e) {
             e.printStackTrace();
         }
-        return str;
+        return Results.error("短信发送失败");
     }
 
+    @Transactional
+    public Results<Users> register(UserRequest request){
+        Users users = userMapper.findUsers(request.getUserName());
+        if (null != users) {
+            return Results.error("手机号已注册");
+        }
+        Integer integer = userMapper.insertOne(request.getUserName(),request.getPassWord(),request.getNickName());
+        if (integer == 1){
+            return Results.success();
+        }
+        return Results.error("更新失败");
+    }
 
-    public Results<Users> updateUser(Integer id, UserRequest request){
+    @Transactional
+    public Results changePwd(Integer id, CheckLgionRequest request){
         if (null == id){
             return Results.error("id为空");
         }
@@ -77,7 +96,35 @@ public class UserService  {
         if (null == users){
             return Results.error("用户不存在");
         }
-        users = userMapper.updateUser(id,request.getUserName(),request.getPassWord(),request.getNickName());
-        return Results.success(users);
+        Integer integer = userMapper.changePwd(request.getUserName(),request.getPassWord());
+        if (integer == 1){
+            return Results.success();
+        }
+        return Results.error("更新失败");
     }
+
+    @Transactional
+    public Results updateUser(Integer id, UserRequest request){
+        if (null == id){
+            return Results.error("id为空");
+        }
+        Users users =  userMapper.findOne(id);
+        if (null == users){
+            return Results.error("用户不存在");
+        }
+        Integer integer = userMapper.updateUser(id,request.getPassWord(),request.getNickName(),request.getSex(),request.getHeadUrl(),request.getMotto());
+        if (integer == 1){
+            return Results.success();
+        }
+        return Results.error("更新失败");
+    }
+
+    public Results<Users> findOne(Integer id){
+        Users users = userMapper.findOne(id);
+        if (null != users) {
+            return Results.success(users);
+        }
+        return Results.error("此用户不存在");
+    }
+
 }

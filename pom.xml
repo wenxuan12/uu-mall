@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.wenxuan</groupId>
 	<artifactId>uu-mall</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>uu-mall</name>
 	<description>UU商城后端接口</description>
 
@@ -74,7 +74,21 @@
 			<artifactId>aliyun-java-sdk-core</artifactId>
 			<version>4.1.0</version>
 		</dependency>
-	</dependencies>
+
+		<!--JSON-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
+		<!--mybatis分页-->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -83,6 +97,16 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 
 </project>

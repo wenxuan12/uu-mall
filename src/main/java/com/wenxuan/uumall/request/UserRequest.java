@@ -1,4 +1,4 @@
-package com.wenxuan.uumall.Entity;
+package com.wenxuan.uumall.request;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,11 +12,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ApiModel
-public class Users {
-
-    @ApiModelProperty("id")
-    @JsonProperty("id")
-    private Integer id;
+public class UserRequest {
 
     @ApiModelProperty("账号")
     @JsonProperty("user_name")
@@ -49,6 +45,4 @@ public class Users {
     @ApiModelProperty("状态")
     @JsonProperty("status")
     private Integer status;
-
-
 }

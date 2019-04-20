@@ -1,4 +1,4 @@
-package com.wenxuan.uumall.Result;
+package com.wenxuan.uumall.result;
 
 import lombok.Getter;
 

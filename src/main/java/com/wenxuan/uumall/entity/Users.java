@@ -1,4 +1,4 @@
-package com.wenxuan.uumall.Request;
+package com.wenxuan.uumall.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,9 +12,13 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ApiModel
-public class UserRequest {
+public class Users {
 
-    @ApiModelProperty("账号")
+    @ApiModelProperty("id")
+    @JsonProperty("id")
+    private Integer id;
+
+    @ApiModelProperty("账号手机号")
     @JsonProperty("user_name")
     private String userName;
 
@@ -26,7 +30,7 @@ public class UserRequest {
     @JsonProperty("nick_name")
     private String nickName;
 
-    @ApiModelProperty("性别0男性1女性")
+    @ApiModelProperty("性别0未知1男性2女性")
     @JsonProperty("sex")
     private Integer sex;
 
@@ -42,7 +46,9 @@ public class UserRequest {
     @JsonProperty("walk_money")
     private BigDecimal walkMoney;
 
-    @ApiModelProperty("状态")
+    @ApiModelProperty("状态0正常")
     @JsonProperty("status")
     private Integer status;
+
+
 }

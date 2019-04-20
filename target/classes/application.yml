@@ -11,3 +11,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+#    将数据库查询进行 驼峰下划线转换
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
