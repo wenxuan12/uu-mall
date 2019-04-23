@@ -1,40 +1,31 @@
 package com.wenxuan.uumall.controller;
 
-import com.wenxuan.uumall.entity.Users;
-import com.wenxuan.uumall.request.UserRequest;
+
+import com.wenxuan.uumall.entity.Business;
+import com.wenxuan.uumall.request.BusinessRequest;
 import com.wenxuan.uumall.request.CheckLgionRequest;
 import com.wenxuan.uumall.result.Results;
-import com.wenxuan.uumall.service.UserService;
+import com.wenxuan.uumall.service.BusinessService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
-@Api(description = "用户管理")
+@Api(description = "商家后台管理")
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/business")
+public class BusinessController {
 
     @Autowired
-    UserService userService;
+    BusinessService businessService;
 
-    @ApiOperation("用户登录")
+    @ApiOperation("商家登录")
     @RequestMapping(
             value = "/checklogin",
             method = RequestMethod.POST
     )
-    Results<Users> checkLogin(@RequestBody CheckLgionRequest request){
-        return userService.chackLogin(request);
-    }
-
-    @ApiOperation("手机验证码")
-    @RequestMapping(
-            value = "/mobile",
-            method = RequestMethod.POST
-    )
-    Results<CheckLgionRequest> mobileCode(@RequestBody CheckLgionRequest request){
-        return userService.mobileCode(request);
+    Results<Business> checklogin(@RequestBody CheckLgionRequest request){
+        return businessService.chackLogin(request);
     }
 
     @ApiOperation("用户注册")
@@ -42,8 +33,8 @@ public class UserController {
             value = "/register",
             method = RequestMethod.POST
     )
-    Results<Users> register(@RequestBody UserRequest request){
-        return userService.register(request);
+    Results<Business> register(@RequestBody BusinessRequest request){
+        return businessService.register(request);
     }
 
     @ApiOperation("修改找回用户密码")
@@ -52,7 +43,7 @@ public class UserController {
             method = RequestMethod.POST
     )
     Results changePwd(@PathVariable("id") Integer id, @RequestBody CheckLgionRequest request){
-        return userService.changePwd(id,request);
+        return businessService.changePwd(id,request);
     }
 
     @ApiOperation("修改用户信息")
@@ -60,8 +51,8 @@ public class UserController {
             value = "/user/{id}",
             method = RequestMethod.PUT
     )
-    Results updateUser(@PathVariable("id") Integer id, @RequestBody UserRequest request){
-        return userService.updateUser(id,request);
+    Results updateUser(@PathVariable("id") Integer id, @RequestBody BusinessRequest request){
+        return businessService.updateUser(id,request);
     }
 
     @ApiOperation("根据id查找用户")
@@ -69,7 +60,7 @@ public class UserController {
             value = "/user/{id}",
             method = RequestMethod.GET
     )
-    Results<Users> findOne(@PathVariable("id") Integer id){
-        return userService.findOne(id);
+    Results<Business> findOne(@PathVariable("id") Integer id){
+        return businessService.findOne(id);
     }
 }

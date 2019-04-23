@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wenxuan.uumall.mapper.UserMapper" >
+<mapper namespace="com.wenxuan.uumall.mapper.BusinessMapper">
 
-
-    <update id="updateUser" parameterType="com.wenxuan.uumall.entity.Users" >
-        update users
+    <update id="updateBusiness" parameterType="com.wenxuan.uumall.entity.Business" >
+        update business
         <set>
             <if test="pass_word != null">pass_word=#{pass_word},</if>
             <if test="nick_name != null">nick_name=#{nick_name},</if>
-            <if test="sex != null">sex=#{sex},</if>
             <if test="head_url != null">head_url=#{head_url},</if>
             <if test="motto != null">motto=#{motto}</if>
         </set>

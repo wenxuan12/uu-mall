@@ -27,9 +27,9 @@ public class UserService  {
     @Autowired
     private UserMapper userMapper;
 
-    public Results<Users> chackLogin(String userName, String passWord){
-        if (StringUtils.isNotEmpty(userName)&&StringUtils.isNotEmpty(passWord)){
-            Users users = userMapper.checkLogin(userName,passWord);
+    public Results<Users> chackLogin(CheckLgionRequest request){
+        if (StringUtils.isNotEmpty(request.getUserName())&&StringUtils.isNotEmpty(request.getPassWord())){
+            Users users = userMapper.checkLogin(request.getUserName(),request.getPassWord());
             if (null == users){
                 return Results.error("账号或密码错误");
             }
@@ -80,7 +80,7 @@ public class UserService  {
         if (null != users) {
             return Results.error("手机号已注册");
         }
-        Integer integer = userMapper.insertOne(request.getUserName(),request.getPassWord(),request.getNickName());
+        Integer integer = userMapper.addOne(request.getUserName(),request.getPassWord(),request.getNickName());
         if (integer == 1){
             return Results.success();
         }
