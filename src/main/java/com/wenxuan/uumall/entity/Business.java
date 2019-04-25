@@ -14,7 +14,7 @@ public class Business {
 
     @ApiModelProperty("id")
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
 
     @ApiModelProperty("账号手机号")
     @JsonProperty("user_name")

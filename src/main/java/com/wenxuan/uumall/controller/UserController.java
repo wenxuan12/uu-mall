@@ -57,7 +57,7 @@ public class UserController {
 
     @ApiOperation("修改用户信息")
     @RequestMapping(
-            value = "/user/{id}",
+            value = "/{id}",
             method = RequestMethod.PUT
     )
     Results updateUser(@PathVariable("id") Integer id, @RequestBody UserRequest request){
@@ -66,7 +66,7 @@ public class UserController {
 
     @ApiOperation("根据id查找用户")
     @RequestMapping(
-            value = "/user/{id}",
+            value = "/{id}",
             method = RequestMethod.GET
     )
     Results<Users> findOne(@PathVariable("id") Integer id){

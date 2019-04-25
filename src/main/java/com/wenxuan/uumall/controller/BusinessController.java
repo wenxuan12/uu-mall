@@ -48,7 +48,7 @@ public class BusinessController {
 
     @ApiOperation("修改用户信息")
     @RequestMapping(
-            value = "/user/{id}",
+            value = "/{id}",
             method = RequestMethod.PUT
     )
     Results updateUser(@PathVariable("id") Integer id, @RequestBody BusinessRequest request){
@@ -57,7 +57,7 @@ public class BusinessController {
 
     @ApiOperation("根据id查找用户")
     @RequestMapping(
-            value = "/user/{id}",
+            value = "/{id}",
             method = RequestMethod.GET
     )
     Results<Business> findOne(@PathVariable("id") Integer id){
