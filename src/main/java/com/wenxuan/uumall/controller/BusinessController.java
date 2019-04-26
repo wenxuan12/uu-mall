@@ -28,7 +28,7 @@ public class BusinessController {
         return businessService.chackLogin(request);
     }
 
-    @ApiOperation("用户注册")
+    @ApiOperation("商家注册")
     @RequestMapping(
             value = "/register",
             method = RequestMethod.POST
@@ -37,7 +37,7 @@ public class BusinessController {
         return businessService.register(request);
     }
 
-    @ApiOperation("修改找回用户密码")
+    @ApiOperation("修改找回商家密码")
     @RequestMapping(
             value = "/changepwd/{id}",
             method = RequestMethod.POST
@@ -46,7 +46,7 @@ public class BusinessController {
         return businessService.changePwd(id,request);
     }
 
-    @ApiOperation("修改用户信息")
+    @ApiOperation("修改商家信息")
     @RequestMapping(
             value = "/{id}",
             method = RequestMethod.PUT
@@ -55,7 +55,7 @@ public class BusinessController {
         return businessService.updateUser(id,request);
     }
 
-    @ApiOperation("根据id查找用户")
+    @ApiOperation("根据id查找商家")
     @RequestMapping(
             value = "/{id}",
             method = RequestMethod.GET

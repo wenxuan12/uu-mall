@@ -38,6 +38,6 @@ public class Business {
 
     @ApiModelProperty("状态0正常")
     @JsonProperty("status")
-    private Integer status;
+    private Byte status;
 
 }

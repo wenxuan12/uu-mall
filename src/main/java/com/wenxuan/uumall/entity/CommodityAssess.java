@@ -3,16 +3,14 @@ package com.wenxuan.uumall.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wenxuan.uumall.result.DateTimeDeserializer;
-import com.wenxuan.uumall.result.DateTimeSerializer;
+import com.wenxuan.uumall.result.TimeFormatter.DateTimeDeserializer;
+import com.wenxuan.uumall.result.TimeFormatter.DateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.sql.*;
 /**
  * table name:  commodity_assess
  * author name: wenxuan

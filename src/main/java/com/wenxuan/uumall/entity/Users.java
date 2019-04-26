@@ -16,7 +16,7 @@ public class Users {
 
     @ApiModelProperty("id")
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
 
     @ApiModelProperty("账号手机号")
     @JsonProperty("user_name")
@@ -32,7 +32,7 @@ public class Users {
 
     @ApiModelProperty("性别0未知1男性2女性")
     @JsonProperty("sex")
-    private Integer sex;
+    private Byte sex;
 
     @ApiModelProperty("头像url")
     @JsonProperty("head_url")
@@ -48,7 +48,7 @@ public class Users {
 
     @ApiModelProperty("状态0正常")
     @JsonProperty("status")
-    private Integer status;
+    private Byte status;
 
 
 }

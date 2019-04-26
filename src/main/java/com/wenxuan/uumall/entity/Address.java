@@ -42,7 +42,7 @@ public class Address{
 	private String phone;
 	@ApiModelProperty("状态")
 	@JsonProperty("status")
-	private String status;
+	private Byte status;
 
 }
 

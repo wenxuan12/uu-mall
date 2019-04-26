@@ -1,12 +1,16 @@
 package com.wenxuan.uumall.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wenxuan.uumall.result.TimeFormatter.DateTimeDeserializer;
+import com.wenxuan.uumall.result.TimeFormatter.DateTimeSerializer;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.sql.*;
 /**
  * table name:  order_list
  * author name: wenxuan
@@ -18,13 +22,33 @@ import java.sql.*;
 @ApiModel
 public class OrderList{
 
+    @ApiModelProperty("id")
+    @JsonProperty("id")
 	private Long id;
+    @ApiModelProperty("用户id")
+    @JsonProperty("u_id")
 	private Long uId;
+    @ApiModelProperty("地址id")
+    @JsonProperty("a_id")
 	private Long aId;
+    @ApiModelProperty("商品id")
+    @JsonProperty("c_id")
 	private Long cId;
+
+    @ApiModelProperty("支付时间")
+    @JsonProperty("pay_time")
+    @JsonSerialize(using = DateTimeSerializer.class)
+    @JsonDeserialize(using = DateTimeDeserializer.class)
 	private LocalDateTime payTime;
+    @ApiModelProperty("更新时间")
+    @JsonProperty("upde_time")
+    @JsonSerialize(using = DateTimeSerializer.class)
+    @JsonDeserialize(using = DateTimeDeserializer.class)
 	private LocalDateTime updeTime;
-	private Long status;
+
+    @ApiModelProperty("状态")
+    @JsonProperty("status")
+	private Byte status;
 
 }
 

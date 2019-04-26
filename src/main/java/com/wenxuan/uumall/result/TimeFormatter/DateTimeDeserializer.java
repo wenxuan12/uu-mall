@@ -1,4 +1,4 @@
-package com.wenxuan.uumall.result;
+package com.wenxuan.uumall.result.TimeFormatter;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

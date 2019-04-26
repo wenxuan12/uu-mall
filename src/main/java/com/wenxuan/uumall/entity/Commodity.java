@@ -3,13 +3,14 @@ package com.wenxuan.uumall.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.wenxuan.uumall.result.DateTimeDeserializer;
-import com.wenxuan.uumall.result.DateTimeSerializer;
+import com.wenxuan.uumall.result.TimeFormatter.DateTimeDeserializer;
+import com.wenxuan.uumall.result.TimeFormatter.DateTimeSerializer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 /**
  * table name:  commodity
@@ -44,10 +45,10 @@ public class Commodity{
 	private String classThree;
 	@ApiModelProperty("旧价格")
 	@JsonProperty("old_price")
-	private Double oldPrice;
+	private BigDecimal oldPrice;
 	@ApiModelProperty("新价格")
 	@JsonProperty("price")
-	private Double price;
+	private BigDecimal price;
 	@ApiModelProperty("数量")
 	@JsonProperty("stock")
 	private Long stock;
@@ -78,7 +79,7 @@ public class Commodity{
 	private String jdUrl;
 	@ApiModelProperty("状态")
 	@JsonProperty("status")
-	private Long status;
+	private Byte status;
 
 }
 
