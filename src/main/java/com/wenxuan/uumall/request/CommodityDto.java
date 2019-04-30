@@ -3,6 +3,7 @@ package com.wenxuan.uumall.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.wenxuan.uumall.entity.Business;
 import com.wenxuan.uumall.entity.CommodityAssess;
 import com.wenxuan.uumall.entity.CommodityDetails;
 import com.wenxuan.uumall.entity.CommodityManager;
@@ -92,4 +93,8 @@ public class CommodityDto {
     @ApiModelProperty("商品属性信息列表")
     @JsonProperty("commodity_manager_list")
     private List<CommodityManager> commodityManagerList;
+
+    @ApiModelProperty("商家信息")
+    @JsonProperty("business")
+    private Business business;
 }

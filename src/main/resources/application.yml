@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://101.132.47.96:3306/uumall?useSSL=false
+    url: jdbc:mysql://101.132.47.96:3306/uumall?useSSL=false&characterEncoding=UTF-8
     username: root
     password: wenxuan123
     driver-class-name: com.mysql.cj.jdbc.Driver

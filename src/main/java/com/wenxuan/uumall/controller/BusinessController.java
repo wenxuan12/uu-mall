@@ -42,7 +42,7 @@ public class BusinessController {
             value = "/changepwd/{id}",
             method = RequestMethod.POST
     )
-    Results changePwd(@PathVariable("id") Integer id, @RequestBody CheckLgionRequest request){
+    Results changePwd(@PathVariable("id") Long id, @RequestBody CheckLgionRequest request){
         return businessService.changePwd(id,request);
     }
 
@@ -51,7 +51,7 @@ public class BusinessController {
             value = "/{id}",
             method = RequestMethod.PUT
     )
-    Results updateUser(@PathVariable("id") Integer id, @RequestBody BusinessRequest request){
+    Results updateUser(@PathVariable("id") Long id, @RequestBody BusinessRequest request){
         return businessService.updateUser(id,request);
     }
 
@@ -60,7 +60,7 @@ public class BusinessController {
             value = "/{id}",
             method = RequestMethod.GET
     )
-    Results<Business> findOne(@PathVariable("id") Integer id){
+    Results<Business> findOne(@PathVariable("id") Long id){
         return businessService.findOne(id);
     }
 }

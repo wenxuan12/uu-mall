@@ -2,14 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wenxuan.uumall.mapper.CommodityMapper" >
 
-    <select id="find" resultType="com.wenxuan.uumall.entity.Commodity">
+    <select id="search" resultType="com.wenxuan.uumall.entity.Commodity">
       select * from commodity
-      <where>
-          1 = 1 and
-          <if test="manager!=null">
-
-          </if>
-      </where>
-
+      where 1 = 1
+      <if test="manager != null">
+         and (name like '%${manager}%' or class_one like '%${manager}%' or class_two like '%${manager}%' or class_three like '%${manager}%')
+      </if>
+      order by  add_time limit #{page},#{per};
     </select>
 </mapper>

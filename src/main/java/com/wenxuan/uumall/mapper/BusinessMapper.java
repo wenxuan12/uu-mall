@@ -17,11 +17,11 @@ public interface BusinessMapper {
     Integer changePwd(@Param("user_name") String userName, @Param("pass_word") String passWord);
 
     @Select("select * from business where id = #{id}")
-    Business findOne(@Param("id") Integer id);
+    Business findOne(@Param("id") Long id);
 
     @Select("select * from business where user_name = #{user_name}")
     Business findBusiness(@Param("user_name") String userName);
 
-    Integer updateBusiness(@Param("id") Integer id, @Param("pass_word") String passWord, @Param("nick_name") String nicName, @Param("head_url") String headUrl,@Param("motto") String motto);
+    Integer updateBusiness(@Param("id") Long id, @Param("pass_word") String passWord, @Param("nick_name") String nicName, @Param("head_url") String headUrl,@Param("motto") String motto);
 
 }

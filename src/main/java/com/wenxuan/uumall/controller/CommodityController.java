@@ -1,6 +1,5 @@
 package com.wenxuan.uumall.controller;
 
-import com.wenxuan.uumall.entity.Commodity;
 import com.wenxuan.uumall.request.CommodityDto;
 import com.wenxuan.uumall.result.Results;
 import com.wenxuan.uumall.service.CommodityService;
@@ -28,11 +27,15 @@ public class CommodityController {
             method = RequestMethod.GET
     )
     @ApiOperation("返回商品列表")
-    Results<List<CommodityDto>> find(@RequestParam(value = "manager", required = false) String manager,
+    Results<List<CommodityDto>> search(@RequestParam(value = "manager", required = false) String manager,
                                     @RequestParam(value = "page",required = false) Integer page,
                                     @RequestParam(value = "per",required = false) Integer per){
-        List<Commodity> commodities = commodityService.find(manager,page,per);
-        return null;
+        if(page== null || per != null) {
+            page = 0;
+            per = 20;
+        }
+        List<CommodityDto> dtos = commodityService.search(manager,page,per);
+        return Results.success(dtos);
     }
 
 }

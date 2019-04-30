@@ -43,7 +43,7 @@ public class BusinessService {
     }
 
     @Transactional
-    public Results changePwd(Integer id, CheckLgionRequest request){
+    public Results changePwd(Long id, CheckLgionRequest request){
         if (null == id){
             return Results.error("id为空");
         }
@@ -59,7 +59,7 @@ public class BusinessService {
     }
 
     @Transactional
-    public Results updateUser(Integer id, BusinessRequest request){
+    public Results updateUser(Long id, BusinessRequest request){
         if (null == id){
             return Results.error("id为空");
         }
@@ -74,7 +74,7 @@ public class BusinessService {
         return Results.error("更新失败");
     }
 
-    public Results<Business> findOne(Integer id){
+    public Results<Business> findOne(Long id){
         Business business = businessMapper.findOne(id);
         if (null != business) {
             return Results.success(business);
