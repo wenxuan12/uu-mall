@@ -1,15 +1,13 @@
 package com.wenxuan.uumall.controller;
 
 import com.wenxuan.uumall.request.CommodityDto;
+import com.wenxuan.uumall.request.CommoditySimpleDto;
 import com.wenxuan.uumall.result.Results;
 import com.wenxuan.uumall.service.CommodityService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,19 +21,29 @@ public class CommodityController {
 
 
     @RequestMapping(
-            value = "/find",
+            value = "/search",
             method = RequestMethod.GET
     )
     @ApiOperation("返回商品列表")
-    Results<List<CommodityDto>> search(@RequestParam(value = "manager", required = false) String manager,
-                                    @RequestParam(value = "page",required = false) Integer page,
-                                    @RequestParam(value = "per",required = false) Integer per){
+    Results<List<CommoditySimpleDto>> search(@RequestParam(value = "manager", required = false) String manager,
+                                             @RequestParam(value = "page",required = false) Integer page,
+                                             @RequestParam(value = "per",required = false) Integer per){
         if(page== null || per != null) {
             page = 0;
             per = 20;
         }
-        List<CommodityDto> dtos = commodityService.search(manager,page,per);
+        List<CommoditySimpleDto> dtos = commodityService.search(manager,page,per);
         return Results.success(dtos);
+    }
+
+    @RequestMapping(
+            value = "/find/{id}",
+            method = RequestMethod.GET
+    )
+    @ApiOperation("根据id查找商品详情")
+    Results<CommodityDto> findOne(@PathVariable("id")Long id){
+        CommodityDto dto = commodityService.findOne(id);
+        return Results.success(dto);
     }
 
 }
