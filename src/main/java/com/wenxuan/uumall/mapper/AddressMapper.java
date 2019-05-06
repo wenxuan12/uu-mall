@@ -18,7 +18,7 @@ public interface AddressMapper {
     @Select("select * from address where id = #{id}")
     Address findOne(@Param("id") Long id);
 
-    @Insert("insert into address(u_id,address_clear,phone) value (#{u_id},#{address_clear},#{phone})")
-    Address add(@Param("u_id")Long u_id,@Param("address_clear")String address_clear,@Param("phone")String phone);
+    @Insert("insert into address(u_id,receive_man,address_clear,phone) value (#{u_id},#{receive_man},#{address_clear},#{phone})")
+    Address add(@Param("u_id")Long u_id,@Param("receive_man") String receive_man, @Param("address_clear")String address_clear,@Param("phone")String phone);
 
 }

@@ -1,10 +1,23 @@
 package com.wenxuan.uumall.dto;
 
+import com.wenxuan.uumall.entity.Address;
 import com.wenxuan.uumall.entity.Commodity;
+import com.wenxuan.uumall.request.AddressDto;
 import com.wenxuan.uumall.request.CommodityDto;
 import com.wenxuan.uumall.request.CommoditySimpleDto;
 
 public class DtoFactory {
+
+    public static AddressDto addressDto(Address entity){
+        AddressDto addressDto = new AddressDto();
+        addressDto.setId(entity.getId());
+        addressDto.setReceiveMan(entity.getReceiveMan());
+        addressDto.setAddressClear(entity.getAddressClear());
+        addressDto.setPhone(entity.getPhone());
+        addressDto.setUId(entity.getUId());
+        addressDto.setStatus(entity.getStatus());
+        return addressDto;
+    }
 
     public static CommodityDto commodityDto(Commodity entity){
         CommodityDto dto = new CommodityDto();
@@ -42,5 +55,6 @@ public class DtoFactory {
         dto.setJdUrl(entity.getJdUrl());
         return dto;
     }
+
 
 }
