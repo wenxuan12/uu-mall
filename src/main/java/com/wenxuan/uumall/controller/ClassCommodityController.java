@@ -1,6 +1,7 @@
 package com.wenxuan.uumall.controller;
 
 import com.wenxuan.uumall.entity.ClassCommodity;
+import com.wenxuan.uumall.result.Cors;
 import com.wenxuan.uumall.service.ClassCommodityService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 @Api(description = "商家分类管理")
 @RequestMapping("/class_commmodity")
-public class ClassCommodityController {
+public class ClassCommodityController extends Cors {
 
     @Autowired
     ClassCommodityService classCommodityService;

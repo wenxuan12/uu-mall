@@ -19,7 +19,6 @@ public class CommodityController {
     @Autowired
     CommodityService commodityService;
 
-
     @RequestMapping(
             value = "/search",
             method = RequestMethod.GET
