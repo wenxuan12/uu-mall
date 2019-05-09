@@ -25,6 +25,12 @@ public class ClassCommodity{
 	@ApiModelProperty("二级类别")
 	@JsonProperty("class_two")
 	private String classTwo;
+	@ApiModelProperty("介绍")
+	@JsonProperty("front")
+	private String front;
+	@ApiModelProperty("图片")
+	@JsonProperty("url")
+	private String url;
 
 }
 
