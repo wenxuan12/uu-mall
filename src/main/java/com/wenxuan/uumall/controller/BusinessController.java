@@ -3,7 +3,8 @@ package com.wenxuan.uumall.controller;
 
 import com.wenxuan.uumall.entity.Business;
 import com.wenxuan.uumall.request.BusinessRequest;
-import com.wenxuan.uumall.request.CheckLgionRequest;
+import com.wenxuan.uumall.request.CheckLoginRequest;
+import com.wenxuan.uumall.result.Cors;
 import com.wenxuan.uumall.result.Results;
 import com.wenxuan.uumall.service.BusinessService;
 import io.swagger.annotations.Api;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "商家后台管理")
 @RestController
 @RequestMapping("/business")
-public class BusinessController {
+public class BusinessController extends Cors {
 
     @Autowired
     BusinessService businessService;
@@ -24,7 +25,7 @@ public class BusinessController {
             value = "/checklogin",
             method = RequestMethod.POST
     )
-    Results<Business> checklogin(@RequestBody CheckLgionRequest request){
+    Results<Business> checklogin(@RequestBody CheckLoginRequest request){
         return businessService.chackLogin(request);
     }
 
@@ -42,7 +43,7 @@ public class BusinessController {
             value = "/changepwd/{id}",
             method = RequestMethod.POST
     )
-    Results changePwd(@PathVariable("id") Long id, @RequestBody CheckLgionRequest request){
+    Results changePwd(@PathVariable("id") Long id, @RequestBody CheckLoginRequest request){
         return businessService.changePwd(id,request);
     }
 

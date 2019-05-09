@@ -2,6 +2,7 @@ package com.wenxuan.uumall.controller;
 
 import com.wenxuan.uumall.request.CommodityDto;
 import com.wenxuan.uumall.request.CommoditySimpleDto;
+import com.wenxuan.uumall.result.Cors;
 import com.wenxuan.uumall.result.Results;
 import com.wenxuan.uumall.service.CommodityService;
 import io.swagger.annotations.Api;
@@ -14,7 +15,7 @@ import java.util.List;
 @Api(description = "商品管理")
 @RestController
 @RequestMapping("/commodity")
-public class CommodityController {
+public class CommodityController extends Cors {
 
     @Autowired
     CommodityService commodityService;

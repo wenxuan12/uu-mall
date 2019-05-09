@@ -5,6 +5,7 @@ import com.wenxuan.uumall.dto.DtoFactory;
 import com.wenxuan.uumall.entity.Address;
 import com.wenxuan.uumall.request.AddressDto;
 import com.wenxuan.uumall.request.AddressRequest;
+import com.wenxuan.uumall.result.Cors;
 import com.wenxuan.uumall.result.Results;
 import com.wenxuan.uumall.service.AddressService;
 import io.swagger.annotations.Api;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 @Api(description = "用户地址管理")
 @RestController
 @RequestMapping("/address")
-public class AddressController {
+public class AddressController extends Cors {
 
     @Autowired
     AddressService addressService;

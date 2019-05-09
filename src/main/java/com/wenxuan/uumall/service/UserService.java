@@ -1,6 +1,5 @@
 package com.wenxuan.uumall.service;
 
-
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
@@ -13,13 +12,12 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.wenxuan.uumall.entity.Users;
 import com.wenxuan.uumall.mapper.UserMapper;
 import com.wenxuan.uumall.request.UserRequest;
-import com.wenxuan.uumall.request.CheckLgionRequest;
+import com.wenxuan.uumall.request.CheckLoginRequest;
 import com.wenxuan.uumall.result.Results;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 @Service
 public class UserService  {
@@ -27,7 +25,7 @@ public class UserService  {
     @Autowired
     private UserMapper userMapper;
 
-    public Results<Users> chackLogin(CheckLgionRequest request){
+    public Results<Users> chackLogin(CheckLoginRequest request){
         if (StringUtils.isNotEmpty(request.getUserName())&&StringUtils.isNotEmpty(request.getPassWord())){
             Users users = userMapper.checkLogin(request.getUserName(),request.getPassWord());
             if (null == users){
@@ -38,7 +36,7 @@ public class UserService  {
         return Results.error("账号密码不能为空");
     }
 
-    public Results<CheckLgionRequest> mobileCode(CheckLgionRequest mobileCheckRequest){
+    public Results<CheckLoginRequest> mobileCode(CheckLoginRequest mobileCheckRequest){
         if (mobileCheckRequest.getUserName().length() != 11){
             return Results.error("手机号长度不正确");
         }
@@ -88,7 +86,7 @@ public class UserService  {
     }
 
     @Transactional
-    public Results changePwd(Integer id, CheckLgionRequest request){
+    public Results changePwd(Integer id, CheckLoginRequest request){
         if (null == id){
             return Results.error("id为空");
         }

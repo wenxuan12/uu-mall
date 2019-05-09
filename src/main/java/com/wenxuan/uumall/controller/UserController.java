@@ -2,7 +2,8 @@ package com.wenxuan.uumall.controller;
 
 import com.wenxuan.uumall.entity.Users;
 import com.wenxuan.uumall.request.UserRequest;
-import com.wenxuan.uumall.request.CheckLgionRequest;
+import com.wenxuan.uumall.request.CheckLoginRequest;
+import com.wenxuan.uumall.result.Cors;
 import com.wenxuan.uumall.result.Results;
 import com.wenxuan.uumall.service.UserService;
 import io.swagger.annotations.Api;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "用户管理")
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends Cors {
 
     @Autowired
     UserService userService;
@@ -24,7 +25,7 @@ public class UserController {
             value = "/checklogin",
             method = RequestMethod.POST
     )
-    Results<Users> checkLogin(@RequestBody CheckLgionRequest request){
+    Results<Users> checkLogin(@RequestBody CheckLoginRequest request){
         return userService.chackLogin(request);
     }
 
@@ -33,7 +34,7 @@ public class UserController {
             value = "/mobile",
             method = RequestMethod.POST
     )
-    Results<CheckLgionRequest> mobileCode(@RequestBody CheckLgionRequest request){
+    Results<CheckLoginRequest> mobileCode(@RequestBody CheckLoginRequest request){
         return userService.mobileCode(request);
     }
 
@@ -51,7 +52,7 @@ public class UserController {
             value = "/changepwd/{id}",
             method = RequestMethod.POST
     )
-    Results changePwd(@PathVariable("id") Integer id, @RequestBody CheckLgionRequest request){
+    Results changePwd(@PathVariable("id") Integer id, @RequestBody CheckLoginRequest request){
         return userService.changePwd(id,request);
     }
 

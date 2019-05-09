@@ -2,9 +2,9 @@ package com.wenxuan.uumall.dto;
 
 import com.wenxuan.uumall.entity.Address;
 import com.wenxuan.uumall.entity.Commodity;
-import com.wenxuan.uumall.request.AddressDto;
-import com.wenxuan.uumall.request.CommodityDto;
-import com.wenxuan.uumall.request.CommoditySimpleDto;
+import com.wenxuan.uumall.entity.ShopCar;
+import com.wenxuan.uumall.entity.ShopCarDetails;
+import com.wenxuan.uumall.request.*;
 
 public class DtoFactory {
 
@@ -56,5 +56,19 @@ public class DtoFactory {
         return dto;
     }
 
+    public static ShopCarDto shopCarDto(ShopCar entity){
+        ShopCarDto shopCarDto = new ShopCarDto();
+        shopCarDto.setId(entity.getId());
+        shopCarDto.setCId(entity.getCId());
+        shopCarDto.setUId(entity.getUId());
+        return shopCarDto;
+    }
+
+    public static ShopCarDetailsDto shopCarDetailsDto(ShopCarDetails entity){
+        ShopCarDetailsDto dto = new ShopCarDetailsDto();
+        dto.setName(entity.getName());
+        dto.setManager(entity.getManager());
+        return dto;
+    }
 
 }

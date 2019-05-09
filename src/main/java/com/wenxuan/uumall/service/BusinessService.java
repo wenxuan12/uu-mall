@@ -4,7 +4,7 @@ package com.wenxuan.uumall.service;
 import com.wenxuan.uumall.entity.Business;
 import com.wenxuan.uumall.mapper.BusinessMapper;
 import com.wenxuan.uumall.request.BusinessRequest;
-import com.wenxuan.uumall.request.CheckLgionRequest;
+import com.wenxuan.uumall.request.CheckLoginRequest;
 import com.wenxuan.uumall.result.Results;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class BusinessService {
     private BusinessMapper businessMapper;
 
 
-    public Results<Business> chackLogin(CheckLgionRequest request){
+    public Results<Business> chackLogin(CheckLoginRequest request){
         if (StringUtils.isNotEmpty(request.getUserName())&&StringUtils.isNotEmpty(request.getPassWord())){
             Business business = businessMapper.checkLogin(request.getUserName(),request.getPassWord());
             if (null == business){
@@ -43,7 +43,7 @@ public class BusinessService {
     }
 
     @Transactional
-    public Results changePwd(Long id, CheckLgionRequest request){
+    public Results changePwd(Long id, CheckLoginRequest request){
         if (null == id){
             return Results.error("id为空");
         }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ApiModel
-public class CheckLgionRequest {
+public class CheckLoginRequest {
 
     @ApiModelProperty("账号")
     @JsonProperty("user_name")
