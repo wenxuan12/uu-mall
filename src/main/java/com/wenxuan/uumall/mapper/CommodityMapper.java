@@ -1,6 +1,7 @@
 package com.wenxuan.uumall.mapper;
 
 import com.wenxuan.uumall.entity.Commodity;
+import com.wenxuan.uumall.request.CommodityDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

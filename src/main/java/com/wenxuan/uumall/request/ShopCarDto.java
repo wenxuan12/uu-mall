@@ -27,4 +27,8 @@ public class ShopCarDto {
     @ApiModelProperty("商品属性")
     @JsonProperty("list_details")
     private List<ShopCarDetailsDto> listDetails;
+
+    @ApiModelProperty("商品信息")
+    @JsonProperty("commodity")
+    private CommodityDto commodity;
 }

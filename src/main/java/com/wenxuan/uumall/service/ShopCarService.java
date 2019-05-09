@@ -1,8 +1,11 @@
 package com.wenxuan.uumall.service;
 
 import com.wenxuan.uumall.dto.DtoFactory;
+import com.wenxuan.uumall.entity.Commodity;
+import com.wenxuan.uumall.entity.CommodityManager;
 import com.wenxuan.uumall.entity.ShopCar;
 import com.wenxuan.uumall.entity.ShopCarDetails;
+import com.wenxuan.uumall.mapper.CommodityMapper;
 import com.wenxuan.uumall.mapper.ShopCarDetailsMapper;
 import com.wenxuan.uumall.mapper.ShopCarMapper;
 import com.wenxuan.uumall.request.ShopCarDetailsDto;
@@ -25,16 +28,20 @@ public class ShopCarService {
     ShopCarMapper shopCarMapper;
     @Autowired
     ShopCarDetailsMapper shopCarDetailsMapper;
+    @Autowired
+    CommodityMapper commodityMapper;
 
     public Results<List<ShopCarDto>> find(Long u_id,Long c_id){
         List<ShopCar> shopCars = shopCarMapper.find(u_id,c_id);
         List<ShopCarDto> dtos = shopCars.stream().map(shopCar -> {
-          ShopCarDto dto = DtoFactory.shopCarDto(shopCar);
-          List<ShopCarDetails> shopCarDetails = shopCarDetailsMapper.find(dto.getId());
-          if (shopCarDetails!=null&&shopCarDetails.size()!=0){
-              List<ShopCarDetailsDto> detailsDtos = shopCarDetails.stream().map(DtoFactory::shopCarDetailsDto).collect(Collectors.toList());
-              dto.setListDetails(detailsDtos);
-          }
+            ShopCarDto dto = DtoFactory.shopCarDto(shopCar);
+            List<ShopCarDetails> shopCarDetails = shopCarDetailsMapper.find(dto.getId());
+            if (shopCarDetails!=null&&shopCarDetails.size()!=0){
+                List<ShopCarDetailsDto> detailsDtos = shopCarDetails.stream().map(DtoFactory::shopCarDetailsDto).collect(Collectors.toList());
+                dto.setListDetails(detailsDtos);
+            }
+            Commodity commodity = commodityMapper.findOne(dto.getCId());
+            dto.setCommodity(DtoFactory.commodityDto(commodity));
             return dto;
         }).collect(Collectors.toList());
         return Results.success(dtos);
