@@ -21,8 +21,8 @@ public class CommodityManager{
     @JsonProperty("id")
     private Long id;
     @ApiModelProperty("商品id")
-    @JsonProperty("c_id")
-    private Long cId;
+    @JsonProperty("commodity_id")
+    private Long commodityId;
     @ApiModelProperty("商品介绍")
     @JsonProperty("class_name")
     private String className;

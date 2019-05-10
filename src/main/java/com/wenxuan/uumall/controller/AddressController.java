@@ -27,23 +27,24 @@ public class AddressController extends Cors {
 
     @ApiOperation("根据用户id查找地址")
     @RequestMapping(
-            value = "/{u_id}",
+            value = "/{user_id}",
             method = RequestMethod.GET
     )
-    Results<List<AddressDto>> find(@PathVariable("u_id") Long u_id){
-        List<Address> addressList = addressService.find(u_id);
+    Results<List<AddressDto>> find(@PathVariable("user_id") Long user_id){
+        List<Address> addressList = addressService.find(user_id);
         List<AddressDto> dtos = addressList.stream().map(DtoFactory::addressDto).collect(Collectors.toList());
         return Results.success(dtos);
     }
 
     @ApiOperation("添加用户地址")
     @RequestMapping(
-            value = "/",
+            value = "/add",
             method = RequestMethod.POST
     )
-    Results<AddressDto> add(@RequestBody AddressRequest request){
-        Address address = addressService.add(request);
-        AddressDto dto = DtoFactory.addressDto(address);
-        return Results.success(dto);
+    Results<Boolean> add(@RequestBody AddressRequest request){
+        if(addressService.add(request)){
+            return Results.success();
+        }
+        return Results.error();
     }
 }

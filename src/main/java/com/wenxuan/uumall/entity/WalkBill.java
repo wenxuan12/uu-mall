@@ -27,11 +27,11 @@ public class WalkBill{
     @JsonProperty("id")
 	private Long id;
     @ApiModelProperty("用户id")
-    @JsonProperty("u_id")
-	private Long uId;
+    @JsonProperty("user_id")
+	private Long userId;
     @ApiModelProperty("订单id")
-    @JsonProperty("o_id")
-	private Long oId;
+    @JsonProperty("order_id")
+	private Long orderId;
     @ApiModelProperty("订单金额")
     @JsonProperty("money")
 	private BigDecimal money;

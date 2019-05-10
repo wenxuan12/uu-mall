@@ -24,7 +24,7 @@ public class ShopCarController extends Cors {
 
     @ApiOperation("查找用户购物车")
     @RequestMapping(
-            value = "/",
+            value = "/find",
             method = RequestMethod.GET
     )
     Results<List<ShopCarDto>> find(@RequestParam(value = "u_id", required = false) Long uId,
@@ -34,7 +34,7 @@ public class ShopCarController extends Cors {
 
     @ApiOperation("添加购物车")
     @RequestMapping(
-            value = "/",
+            value = "/add",
             method = RequestMethod.POST
     )
     Results<ShopCarDto> add(@RequestBody ShopCarRequest request){

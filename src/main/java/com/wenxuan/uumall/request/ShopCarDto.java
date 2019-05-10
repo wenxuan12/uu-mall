@@ -1,6 +1,5 @@
 package com.wenxuan.uumall.request;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,11 +17,11 @@ public class ShopCarDto {
     @JsonProperty("id")
     private Long id;
     @ApiModelProperty("用户id")
-    @JsonProperty("u_id")
-    private Long uId;
+    @JsonProperty("user_id")
+    private Long userId;
     @ApiModelProperty("商品id")
-    @JsonProperty("c_id")
-    private Long cId;
+    @JsonProperty("commodity_id")
+    private Long commodityId;
 
     @ApiModelProperty("商品属性")
     @JsonProperty("list_details")

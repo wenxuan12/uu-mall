@@ -30,7 +30,7 @@ public class CommodityService {
         List<Commodity> commodities = commodityMapper.search(manager, page, per);
         List<CommoditySimpleDto> dtos = commodities.stream().map(commodity -> {
             CommoditySimpleDto dto =  DtoFactory.commoditySimpleDto(commodity);
-            Business business = businessService.findOne(dto.getBId()).getData();
+            Business business = businessService.findOne(dto.getBusinessId()).getData();
             if (business != null) {
                 dto.setBusinessName(business.getNickName());
             }
@@ -54,7 +54,7 @@ public class CommodityService {
         if (commodityManagers != null && commodityManagers.size() != 0){
             dto.setCommodityManagerList(commodityManagers);
         }
-        Business business = businessService.findOne(dto.getBId()).getData();
+        Business business = businessService.findOne(dto.getBusinessId()).getData();
         if (business != null) {
             dto.setBusiness(business);
         }

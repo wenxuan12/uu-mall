@@ -27,8 +27,8 @@ public class CommodityDto {
     @JsonProperty("id")
     private Long id;
     @ApiModelProperty("商家id")
-    @JsonProperty("b_id")
-    private Long bId;
+    @JsonProperty("business_id")
+    private Long businessId;
     @ApiModelProperty("商品名称")
     @JsonProperty("name")
     private String name;

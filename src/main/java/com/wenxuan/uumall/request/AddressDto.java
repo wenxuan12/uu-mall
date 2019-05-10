@@ -16,8 +16,8 @@ public class AddressDto {
     @JsonProperty("id")
     private Long id;
     @ApiModelProperty("用户id")
-    @JsonProperty("u_id")
-    private Long uId;
+    @JsonProperty("user_id")
+    private Long userId;
     @ApiModelProperty("接收人")
     @JsonProperty("receive_man")
     private String receiveMan;

@@ -40,7 +40,7 @@ public class ShopCarService {
                 List<ShopCarDetailsDto> detailsDtos = shopCarDetails.stream().map(DtoFactory::shopCarDetailsDto).collect(Collectors.toList());
                 dto.setListDetails(detailsDtos);
             }
-            Commodity commodity = commodityMapper.findOne(dto.getCId());
+            Commodity commodity = commodityMapper.findOne(dto.getCommodityId());
             dto.setCommodity(DtoFactory.commodityDto(commodity));
             return dto;
         }).collect(Collectors.toList());
@@ -49,7 +49,7 @@ public class ShopCarService {
 
     @Transactional
     public Results<ShopCarDto> add(ShopCarRequest request){
-        ShopCar shopCar = shopCarMapper.add(request.getUId(),request.getCId());
+        ShopCar shopCar = shopCarMapper.add(request.getUId(),request.getCommodityId());
         ShopCarDto dto = DtoFactory.shopCarDto(shopCar);
         List<ShopCarDetailsDto> detailsDtos = new ArrayList<>();
         List<ShopCarDetailsRequest> requests = request.getListDetails();

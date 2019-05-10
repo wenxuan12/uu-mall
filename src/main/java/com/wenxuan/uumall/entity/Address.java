@@ -20,20 +20,23 @@ public class Address{
 	@JsonProperty("id")
 	private Long id;
 	@ApiModelProperty("用户id")
-	@JsonProperty("u_id")
-	private Long uId;
+	@JsonProperty("user_id")
+	private Long userId;
 	@ApiModelProperty("接收人")
 	@JsonProperty("receive_man")
 	private String receiveMan;
 	@ApiModelProperty("接收省份")
 	@JsonProperty("address_sheng")
 	private String addressSheng;
+
 	@ApiModelProperty("接收市")
 	@JsonProperty("address_shi")
 	private String addressShi;
+
 	@ApiModelProperty("接收区")
 	@JsonProperty("address_qu")
 	private String addressQu;
+
 	@ApiModelProperty("接收详细地址")
 	@JsonProperty("address_clear")
 	private String addressClear;

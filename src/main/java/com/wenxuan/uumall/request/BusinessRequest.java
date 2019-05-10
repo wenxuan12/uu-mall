@@ -35,7 +35,4 @@ public class BusinessRequest {
     @JsonProperty("motto")
     private String motto;
 
-    @ApiModelProperty("状态0正常")
-    @JsonProperty("status")
-    private Integer status;
 }

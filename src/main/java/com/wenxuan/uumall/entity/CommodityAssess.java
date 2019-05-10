@@ -25,8 +25,8 @@ public class CommodityAssess{
 	@JsonProperty("id")
 	private Long id;
 	@ApiModelProperty("商品id")
-	@JsonProperty("c_id")
-	private Long cId;
+	@JsonProperty("commodity_id")
+	private Long commodityId;
 	@ApiModelProperty("评价人姓名")
 	@JsonProperty("name")
 	private String name;

@@ -19,7 +19,7 @@ public class WalkBillController extends Cors {
 
     @ApiOperation("查看钱包")
     @RequestMapping(
-            value = "/",
+            value = "/find",
             method = RequestMethod.GET
     )
     Results find(){
@@ -38,7 +38,7 @@ public class WalkBillController extends Cors {
 
     @ApiOperation("添加账单")
     @RequestMapping(
-            value = "/",
+            value = "/add",
             method = RequestMethod.POST
     )
     Results add(@RequestBody Long id){

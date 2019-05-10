@@ -26,11 +26,11 @@ public class OrderList{
     @JsonProperty("id")
 	private Long id;
     @ApiModelProperty("用户id")
-    @JsonProperty("u_id")
-	private Long uId;
+    @JsonProperty("user_id")
+	private Long userId;
     @ApiModelProperty("地址id")
-    @JsonProperty("a_id")
-	private Long aId;
+    @JsonProperty("address_id")
+	private Long addressId;
     @ApiModelProperty("商品id")
     @JsonProperty("c_id")
 	private Long cId;

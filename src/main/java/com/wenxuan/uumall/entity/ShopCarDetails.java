@@ -21,8 +21,8 @@ public class ShopCarDetails{
 	@JsonProperty("id")
 	private Long id;
 	@ApiModelProperty("购物车id")
-	@JsonProperty("s_id")
-	private Long sId;
+	@JsonProperty("shop_car_id")
+	private Long shopCarId;
 	@ApiModelProperty("属性名")
 	@JsonProperty("name")
 	private String name;

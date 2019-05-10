@@ -15,11 +15,11 @@ import java.util.List;
 public class ShopCarRequest {
 
     @ApiModelProperty("用户id")
-    @JsonProperty("u_id")
+    @JsonProperty("user_id")
     private Long uId;
     @ApiModelProperty("商品id")
-    @JsonProperty("c_id")
-    private Long cId;
+    @JsonProperty("commodity_id")
+    private Long commodityId;
 
     @ApiModelProperty("商品属性")
     @JsonProperty("list_details")

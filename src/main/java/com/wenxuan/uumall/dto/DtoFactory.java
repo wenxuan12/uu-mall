@@ -14,7 +14,7 @@ public class DtoFactory {
         addressDto.setReceiveMan(entity.getReceiveMan());
         addressDto.setAddressClear(entity.getAddressClear());
         addressDto.setPhone(entity.getPhone());
-        addressDto.setUId(entity.getUId());
+        addressDto.setUserId(entity.getUserId());
         addressDto.setStatus(entity.getStatus());
         return addressDto;
     }
@@ -22,7 +22,7 @@ public class DtoFactory {
     public static CommodityDto commodityDto(Commodity entity){
         CommodityDto dto = new CommodityDto();
         dto.setId(entity.getId());
-        dto.setBId(entity.getBId());
+        dto.setBusinessId(entity.getBusinessId());
         dto.setName(entity.getName());
         dto.setPicUrl(entity.getPicUrl());
         dto.setClassOne(entity.getClassOne());
@@ -44,7 +44,7 @@ public class DtoFactory {
     public static CommoditySimpleDto commoditySimpleDto(Commodity entity){
         CommoditySimpleDto dto = new CommoditySimpleDto();
         dto.setId(entity.getId());
-        dto.setBId(entity.getBId());
+        dto.setBusinessId(entity.getBusinessId());
         dto.setName(entity.getName());
         dto.setPicUrl(entity.getPicUrl());
         dto.setClassOne(entity.getClassOne());
@@ -59,8 +59,8 @@ public class DtoFactory {
     public static ShopCarDto shopCarDto(ShopCar entity){
         ShopCarDto shopCarDto = new ShopCarDto();
         shopCarDto.setId(entity.getId());
-        shopCarDto.setCId(entity.getCId());
-        shopCarDto.setUId(entity.getUId());
+        shopCarDto.setCommodityId(entity.getCommodityId());
+        shopCarDto.setUserId(entity.getUserId());
         return shopCarDto;
     }
 

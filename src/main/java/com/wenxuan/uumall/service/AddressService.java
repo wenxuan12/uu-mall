@@ -15,11 +15,15 @@ public class AddressService {
     @Autowired
     AddressMapper addressMapper;
 
-    public List<Address> find(Long u_id){
-        return addressMapper.find(u_id);
+    public List<Address> find(Long user_id){
+        return addressMapper.find(user_id);
     }
 
-    public Address add(AddressRequest request){
-        return addressMapper.add(request.getUId(),request.getReceiveMan(),request.getAddressClear(),request.getPhone());
+    public Boolean add(AddressRequest request){
+        Integer integer = addressMapper.add(request.getUserId(),request.getReceiveMan(),request.getAddressClear(),request.getPhone());
+        if (integer == 1){
+            return true;
+        }
+        return false;
     }
 }
