@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper
 public interface CommodityAssessMapper {
 
-    @Select("select * from commodity_assess where c_id = #{c_id}")
-    List<CommodityAssess> findByCommodity(@Param("c_id") Long c_id);
+    @Select("select * from commodity_assess where commodity_id = #{commodity_id}")
+    List<CommodityAssess> findByCommodity(@Param("commodity_id") Long commodity_id);
 }

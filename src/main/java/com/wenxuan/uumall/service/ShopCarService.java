@@ -1,17 +1,11 @@
 package com.wenxuan.uumall.service;
 
 import com.wenxuan.uumall.dto.DtoFactory;
-import com.wenxuan.uumall.entity.Commodity;
-import com.wenxuan.uumall.entity.CommodityManager;
-import com.wenxuan.uumall.entity.ShopCar;
-import com.wenxuan.uumall.entity.ShopCarDetails;
+import com.wenxuan.uumall.entity.*;
 import com.wenxuan.uumall.mapper.CommodityMapper;
 import com.wenxuan.uumall.mapper.ShopCarDetailsMapper;
 import com.wenxuan.uumall.mapper.ShopCarMapper;
-import com.wenxuan.uumall.request.ShopCarDetailsDto;
-import com.wenxuan.uumall.request.ShopCarDetailsRequest;
-import com.wenxuan.uumall.request.ShopCarDto;
-import com.wenxuan.uumall.request.ShopCarRequest;
+import com.wenxuan.uumall.request.*;
 import com.wenxuan.uumall.result.Results;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,35 +24,52 @@ public class ShopCarService {
     ShopCarDetailsMapper shopCarDetailsMapper;
     @Autowired
     CommodityMapper commodityMapper;
-
-    public Results<List<ShopCarDto>> find(Long u_id,Long c_id){
-        List<ShopCar> shopCars = shopCarMapper.find(u_id,c_id);
+    @Autowired
+    BusinessService businessService;
+    public Results<List<ShopCarDto>> find(Long user_id){
+        List<ShopCar> shopCars = shopCarMapper.find(user_id);
         List<ShopCarDto> dtos = shopCars.stream().map(shopCar -> {
             ShopCarDto dto = DtoFactory.shopCarDto(shopCar);
-            List<ShopCarDetails> shopCarDetails = shopCarDetailsMapper.find(dto.getId());
-            if (shopCarDetails!=null&&shopCarDetails.size()!=0){
-                List<ShopCarDetailsDto> detailsDtos = shopCarDetails.stream().map(DtoFactory::shopCarDetailsDto).collect(Collectors.toList());
-                dto.setListDetails(detailsDtos);
-            }
+//            List<ShopCarDetails> shopCarDetails = shopCarDetailsMapper.find(dto.getId());
+//            if (shopCarDetails!=null&&shopCarDetails.size()!=0){
+//                List<ShopCarDetailsDto> detailsDtos = shopCarDetails.stream().map(DtoFactory::shopCarDetailsDto).collect(Collectors.toList());
+//                dto.setListDetails(detailsDtos);
+//            }
             Commodity commodity = commodityMapper.findOne(dto.getCommodityId());
-            dto.setCommodity(DtoFactory.commodityDto(commodity));
+            CommoditySimpleDto commoditySimpleDto = DtoFactory.commoditySimpleDto(commodity);
+            Business business = businessService.findOne(commoditySimpleDto.getBusinessId()).getData();
+            if (business != null) {
+                commoditySimpleDto.setBusinessName(business.getNickName());
+            }
+            dto.setCommodity(commoditySimpleDto);
             return dto;
         }).collect(Collectors.toList());
         return Results.success(dtos);
     }
 
     @Transactional
-    public Results<ShopCarDto> add(ShopCarRequest request){
-        ShopCar shopCar = shopCarMapper.add(request.getUId(),request.getCommodityId());
-        ShopCarDto dto = DtoFactory.shopCarDto(shopCar);
-        List<ShopCarDetailsDto> detailsDtos = new ArrayList<>();
-        List<ShopCarDetailsRequest> requests = request.getListDetails();
-        for (ShopCarDetailsRequest shopCarDetailsRequest:requests){
-            ShopCarDetails details = shopCarDetailsMapper.add(shopCar.getId(),shopCarDetailsRequest.getName(),shopCarDetailsRequest.getManager());
-            detailsDtos.add(DtoFactory.shopCarDetailsDto(details));
+    public Results<Boolean> add(ShopCarRequest request){
+        ShopCar shopCar = shopCarMapper.findByUserIdAndCommodityId(request.getUserId(),request.getCommodityId());
+        if (shopCar!=null){
+            shopCar.setNumber(shopCar.getNumber() + request.getNumber());
+            Integer in = shopCarMapper.update(shopCar.getNumber(),shopCar.getId());
+            if (in==1){
+                return Results.success();
+            }
+            return Results.error();
         }
-        dto.setListDetails(detailsDtos);
-        return Results.success(dto);
+        Integer integer = shopCarMapper.add(request.getUserId(),request.getCommodityId(),request.getNumber());
+        if (integer == 1){
+            return Results.success();
+        }
+        return Results.error();
+//        List<ShopCarDetailsDto> detailsDtos = new ArrayList<>();
+//        List<ShopCarDetailsRequest> requests = request.getListDetails();
+//        for (ShopCarDetailsRequest shopCarDetailsRequest:requests){
+//            ShopCarDetails details = shopCarDetailsMapper.add(shopCar.getId(),shopCarDetailsRequest.getName(),shopCarDetailsRequest.getManager());
+//            detailsDtos.add(DtoFactory.shopCarDetailsDto(details));
+//        }
+//        dto.setListDetails(detailsDtos);
     }
 
 }

@@ -11,6 +11,6 @@ import java.util.List;
 @Mapper
 public interface CommodityDetailsMapper {
 
-    @Select("select * from commodity_details where c_id = #{c_id}")
-    List<CommodityDetails> findByCommodity(@Param("c_id") Long c_id);
+    @Select("select * from commodity_details where commodity_id = #{commodity_id}")
+    List<CommodityDetails> findByCommodity(@Param("commodity_id") Long commodity_id);
 }

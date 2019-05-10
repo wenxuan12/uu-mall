@@ -27,5 +27,9 @@ public class ShopCar{
 	@JsonProperty("commodity_id")
 	private Long commodityId;
 
+	@ApiModelProperty("商品数量")
+	@JsonProperty("number")
+	private Long number;
+
 }
 

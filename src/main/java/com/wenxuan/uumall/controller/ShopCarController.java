@@ -27,9 +27,8 @@ public class ShopCarController extends Cors {
             value = "/find",
             method = RequestMethod.GET
     )
-    Results<List<ShopCarDto>> find(@RequestParam(value = "u_id", required = false) Long uId,
-                                   @RequestParam(value = "c_id", required = false) Long cId){
-        return shopCarService.find(uId,cId);
+    Results<List<ShopCarDto>> find(@RequestParam(value = "user_id") Long userId){
+        return shopCarService.find(userId);
     }
 
     @ApiOperation("添加购物车")
@@ -37,7 +36,7 @@ public class ShopCarController extends Cors {
             value = "/add",
             method = RequestMethod.POST
     )
-    Results<ShopCarDto> add(@RequestBody ShopCarRequest request){
+    Results<Boolean> add(@RequestBody ShopCarRequest request){
         return shopCarService.add(request);
     }
 }

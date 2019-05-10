@@ -32,8 +32,8 @@ public class OrderList{
     @JsonProperty("address_id")
 	private Long addressId;
     @ApiModelProperty("商品id")
-    @JsonProperty("c_id")
-	private Long cId;
+    @JsonProperty("commodity_id")
+	private Long commodityId;
 
     @ApiModelProperty("支付时间")
     @JsonProperty("pay_time")

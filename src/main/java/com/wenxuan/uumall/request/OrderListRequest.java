@@ -6,27 +6,21 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ApiModel
-public class ShopCarDto {
-
-    @ApiModelProperty("id")
-    @JsonProperty("id")
-    private Long id;
+public class OrderListRequest {
     @ApiModelProperty("用户id")
     @JsonProperty("user_id")
     private Long userId;
+    @ApiModelProperty("地址id")
+    @JsonProperty("address_id")
+    private Long addressId;
     @ApiModelProperty("商品id")
     @JsonProperty("commodity_id")
     private Long commodityId;
-    @ApiModelProperty("商品数量")
-    @JsonProperty("number")
-    private Long number;
 
-    @ApiModelProperty("商品信息")
-    @JsonProperty("commodity")
-    private CommoditySimpleDto commodity;
+    @ApiModelProperty("购物车id")
+    @JsonProperty("shop_car_id")
+    private Long shopCarId;
 }

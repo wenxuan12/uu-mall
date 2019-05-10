@@ -12,9 +12,9 @@ import java.util.List;
 @Mapper
 public interface ShopCarDetailsMapper {
 
-    @Select("select * from shop_car_details where s_id = #{s_id}")
-    List<ShopCarDetails> find(@Param("s_id")Long s_id);
+    @Select("select * from shop_car_details where shop_car_id = #{shop_car_id}")
+    List<ShopCarDetails> find(@Param("shop_car_id")Long shop_car_id);
 
-    @Insert("insert into shop_car_details(s_id,name,manager) value (#{s_id},#{name},#{manager}")
-    ShopCarDetails add(@Param("s_id")Long s_id,@Param("name")String name,@Param("manager")String manager);
+    @Insert("insert into shop_car_details(shop_car_id,name,manager) value (#{shop_car_id},#{name},#{manager}")
+    Integer add(@Param("shop_car_id")Long shop_car_id,@Param("name")String name,@Param("manager")String manager);
 }

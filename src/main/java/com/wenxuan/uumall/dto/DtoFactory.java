@@ -61,6 +61,7 @@ public class DtoFactory {
         shopCarDto.setId(entity.getId());
         shopCarDto.setCommodityId(entity.getCommodityId());
         shopCarDto.setUserId(entity.getUserId());
+        shopCarDto.setNumber(entity.getNumber());
         return shopCarDto;
     }
 
