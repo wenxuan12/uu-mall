@@ -40,7 +40,7 @@ public class UserService  {
         if (mobileCheckRequest.getUserName().length() != 11){
             return Results.error("手机号长度不正确");
         }
-        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "11LTAIRLb6GBCCtKk822", "11ErfuyvEkMRMUsmumOgHkL6WPvYlqal22");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "", "");
         IAcsClient client = new DefaultAcsClient(profile);
         int number = (int)(Math.random()*864198+123456);
         CommonRequest request = new CommonRequest();
